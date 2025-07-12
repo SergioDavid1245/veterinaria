@@ -4,27 +4,29 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Entity
-@Table(name = "ITEMCARRITO")
+@Table(name = "citamedica")
 @Data
-public class ItemCarrito {
+public class CitaMedica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCarrito")
+    @JoinColumn(name = "idPaciente")
     @JsonBackReference
-    private Carrito carrito;
+    private Paciente paciente;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idProducto")
-//    @JsonBackReference
-    private Producto producto;
+    @JoinColumn(name = "idMedico")
+    @JsonBackReference
+    private Medico medico;
 
-    @Column(name="cantidad")
-    private int cantidad;
+    @Column(name="motivo")
+    private String motivo;
 
-    @Column(name="subTotal")
-    private double subTotal;
+    @Column(name="fecha")
+    private Date fecha;
 }

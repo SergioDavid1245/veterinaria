@@ -7,9 +7,9 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-@Table(name = "CLIENTE")
+@Table(name = "medico")
 @Data
-public class Cliente {
+public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,10 +20,10 @@ public class Cliente {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "apellidos")
-    private String apellidos;
+    @Column(name = "especialidad")
+    private String especialidad;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
-    private List<Carrito> carritos;
+    private List<CitaMedica> citasMedicas;
 }

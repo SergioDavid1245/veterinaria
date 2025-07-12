@@ -11,26 +11,27 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "CARRITO")
+@Table(name = "tutor")
 @Data
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Carrito {
+public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "dni")
+    private String dni;
+
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "fecha")
-    private Date fecha;
+    @Column(name = "direccion")
+    private String direccion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCliente")
-    @JsonBackReference
-    private Cliente cliente;
+    @Column(name = "telefono")
+    private String telefono;
 
-    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
-    private List<ItemCarrito> items = new ArrayList<>();
+    private List<Paciente> pacientes = new ArrayList<>();
 }
